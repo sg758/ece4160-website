@@ -554,7 +554,6 @@ a:hover {
                 background-color 0.3s,
                 border-color 0.3s,
                 border-width 0.3s,
-                margin-bottom 0.3s
 }
 
 .btn#current,
@@ -564,7 +563,6 @@ a:hover {
     background-color: #5e5f68;
     border-width: 2px;
     border-color: #eeeeee;
-    margin-bottom: 6px;
 }
 
 .btn+.btn {
