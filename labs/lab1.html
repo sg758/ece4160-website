@@ -57,21 +57,64 @@
 
         <h1 id="lab-1">Lab 1</h1>
 
-        <!-- <h2>Introduction</h2> -->
-        <!-- <p>
-            For Lab 1, we began the construction of the robot and wrote Arduino
-            code to perform basic functionality with the servos and ultrasonic
-            sensors. We used the Arduino Nano Every to control the servos and
-            get data from the ultrasonic sensors. As can be seen in Figure 1,
-            we placed tape over the soldered connections on the board to avoid
-            accidentally short circuiting these connections.
-        </p> -->
+        <h2>Introduction</h2>
+            <p>
+                The purpose of Lab 1 was to install Arduino and start experimenting
+                with the Artemis Nano's features by flashing four different code
+                examples to the board. The first program is a hello world program
+                of sorts, as it blinks the built-in LED on the board. The second
+                program takes inputs into the serial monitor and echoes it back
+                as the output. The third program reads the temperature sensor of
+                the chip and prints it to the serial monitor. Finally, the fourth
+                program listens to input into the built-in microphone, takes an
+                FFT of it, and prints the frequency with the highest magnitude.
+            </p>
 
-        <!-- <figure id="figure1">
-            <img src="/sg758/sg758.github.io/assets/images/lab1/nano.png"
-                 alt="Arduino Nano Every">
-            <figcaption>Figure 1: Arduino Nano Every with tape over it.</figcaption>
-        </figure> -->
+        <h2>Demos</h2>
+            <h3>Program 1: <code>Blink.ino</code></h3>
+                <figure id="figure1">
+                    <video width="100%" controls>
+                        <source src="/ece4160-website/assets/videos/lab1/blink.mp4" type="video/mp4">
+                    </video>
+                </figure>
+
+            <h3>Program 2: <code>Example4_Serial.ino</code></h3>
+                <p>
+                    In this example, the board takes data from the
+                    <code>Message</code> field in the serial monitor as input
+                    and echoes it back as the output. Below is a screenshot of 
+                    the serial monitor after I entered the following inputs:
+                    "test", "1", "2", "2+3", "clear", "exit()", and "okay!".
+                </p>
+                <figure id="figure2">
+                    <img src="/ece4160-website/assets/images/lab1/serial.jpg"
+                    alt="Image of serial monitor after Example4_Serial.ino demo">
+                </figure>
+            
+            <h3>Program 3: <code>Example2_AnalogRead.ino</code></h3>
+                <p>
+                    The original code printed raw temperature data along with
+                    some voltage data, but I modified it slightly to print the
+                    temperature in °F (which was stored in a variable already
+                    but not used) to make it more comprehensible.
+                </p>
+                <figure id="figure3">
+                    <video width="100%" controls>
+                        <source src="/ece4160-website/assets/videos/lab1/temp.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            
+            <h3>Program 4: <code>Example1_MicrophoneOutput.ino</code></h3>
+                <p>
+                    For this program, I played a 440Hz sine wave and took a 
+                    screen recording of the Serial Monitor as the sound was
+                    listened to by the board's microphone.
+                </p>
+                <figure id="figure4">
+                    <video width="100%" controls>
+                        <source src="/ece4160-website/assets/videos/lab1/mic.mp4" type="video/mp4">
+                    </video>
+                </figure>
 
         <footer class="site-footer">
             <span class="site-footer-owner">
