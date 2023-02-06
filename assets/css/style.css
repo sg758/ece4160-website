@@ -743,7 +743,8 @@ a:hover {
 }
 
 .main-content p {
-    margin-bottom: 1em
+    margin-bottom: 1em;
+    text-align: justify
 }
 
 .main-content code {
