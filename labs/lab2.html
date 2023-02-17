@@ -54,9 +54,7 @@
             <a href="/ece4160-website/labs/lab4.html" class="btn">Lab 4</a> -->
         </div>
 
-        <h1 id="lab-2">Lab 2</h1>
-
-        <h2>Introduction</h2>
+        <h1>Introduction</h1>
             <p>
                 The purpose of Lab 2 was to set up a Bluetooth Low Energy (BLE)
                 communication between the Artermis Nano and the computer. The
@@ -65,8 +63,8 @@
                 program.
             </p>
 
-        <h2>Prelab</h2>
-            <h3>Setup</h3>
+        <h1>Prelab</h1>
+            <h2>Setup</h2>
                 <p>
                     I first updated Python and pip to the latest versions, and
                     installed a Python virtual environment (<samp>venv</samp>).
@@ -85,7 +83,7 @@
                         alt="MAC Address of my Artemis Nano">
                 </figure>
 
-            <h3>Codebase</h3>
+            <h2>Codebase</h2>
                 <p>
                     The codebase is separated between Python and Arduino. The
                     Python code consists of various modules responsible for 
@@ -118,8 +116,8 @@
                     via Bluetooth by the Bluetooth module.
                 </p>
 
-        <h2>Lab Tasks</h2>
-            <h3>Configurations</h3>
+        <h1>Lab Tasks</h1>
+            <h2>Configurations</h2>
                 <p>
                     After obtaining the MAC address, I updated the appropriate 
                     value in <samp>connections.yaml</samp>. Then, I generated a
@@ -135,7 +133,7 @@
                     connection.
                 </p>
 
-            <h3>Jupyter Notebook <samp>demo.ipynb</samp></h3>
+            <h2>Jupyter Notebook <samp>demo.ipynb</samp></h2>
                 <p>
                     The next step was to test that the BLE connection worked
                     by flashing the Arduino sketch to the board and running
@@ -172,7 +170,7 @@
                     alt="Disconnection from BLE">
                 </figure>
             
-            <h3>Send Echo</h3>
+            <h2>Send Echo</h2>
                 <p>
                     This task required sending an <samp>ECHO</samp> command with
                     a String as an argument from the notebook to the Artemis and
@@ -195,7 +193,7 @@
                     <samp>Artemis Robot Says: "Command 1" :D</samp>
                 </p>
             
-            <h3>Get Time</h3>
+            <h2>Get Time</h2>
                 <p>
                     This task required adding a new command type
                     <samp>GET_TIME_MILLIS</samp>, sending which to the board
@@ -218,7 +216,7 @@
                     <samp>T:424303</samp>
                 </p>
             
-            <h3>Notification Handler</h3>
+            <h2>Notification Handler</h2>
                 <p>
                     This task required setting up a notification handler in Python
                     to receive any string value. This would essentially serve
@@ -238,7 +236,7 @@
                     <samp>T:428983</samp>
                 </p>
             
-            <h3>Get Temperature</h3>
+            <h2>Get Temperature</h2>
                 <p>
                     This task required adding a new command
                     <samp>GET_TEMP_5s</samp>, whose receipt on the Arduino side
@@ -267,7 +265,7 @@
                         alt="5 seconds of temperature data">
                 </figure>
             
-            <h3>Get Temperature Rapid</h3>
+            <h2>Get Temperature Rapid</h2>
                 <p>
                     Similar to the previous task, this task required adding the
                     <samp>GET_TEMP_5s_RAPID</samp> command, which would send
@@ -292,7 +290,7 @@
                         alt="5 seconds of rapid temperature data">
                 </figure>
 
-            <h3>Limitations</h3>
+            <h2>Limitations</h2>
                 <p>
                     If the board has 384 kB of RAM, this is equivalent to
                     3145728 b of memory, which is the exact value that is
