@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <title>Sugam's ECE 4160 Website | Lab 2</title>
+    <meta name="generator" content="Jekyll v3.9.2"/>
+    <meta property="og:title" content="Sugam Gautam's ECE 4160 Website"/>
+    <meta property="og:locale" content="en_US"/>
+    <link rel="canonical" href="https://sg758.github.io/ece4160-website/"/>
+    <meta property="og:url" content="https://sg758.github.io/ece4160-website/"/>
+    <meta property="og:site_name" content="ece4160-website"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:title" content="Sugam Gautam's ECE 4160 Website"/>
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"WebSite",
+            "headline":"Sugam Gautam's ECE 4160 Website",
+            "name":"ece4160-website",
+            "url":"https://sg758.github.io/ece4160-website/"
+        }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/ece4160-website/assets/css/style.css">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/ece4160-website/assets/images/favicon.png"> -->
+</head>
+
+<body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+        <h1 class="project-name"><a href="/ece4160-website/">ECE 4160 - Fast Robots (SP23)</a></h1>
+        <h2 class="project-tagline">Sugam Gautam</h2>
+        <a href="https://github.com/sg758/ece4160-website" class="btn" id="view-on-github">View on GitHub</a>
+    </header>
+
+    <main id="content" class="main-content" role="main">
+        <div id="navigation">
+            <a href="/ece4160-website/" class="btn">Home</a>
+            <a href="/ece4160-website/labs/lab1.html" class="btn">Lab 1</a>
+            <a href="/ece4160-website/labs/lab2.html" class="btn" id="current">Lab 2</a>
+            <!-- <a href="/ece4160-website/labs/lab3.html" class="btn">Lab 3</a>
+            <a href="/ece4160-website/labs/lab4.html" class="btn">Lab 4</a> -->
+        </div>
+
+        <h1 id="lab-2">Lab 2</h1>
+
+        <h2>Introduction</h2>
+            <p>
+                The purpose of Lab 2 was to set up a Bluetooth Low Energy (BLE)
+                communication between the Artermis Nano and the computer. The
+                computer would interface with the board by sending and receiving
+                data from a Python program in a Jupyter Notebook to an Arduino
+                program.
+            </p>
+
+        <h2>Prelab</h2>
+            <h3>Setup</h3>
+                <p>
+                    I first updated Python and pip to the latest versions, and
+                    installed a Python virtual environment (<samp>venv</samp>).
+                    A virtual environment allows for the installation of Python
+                    packages that is separate from other environments and the main
+                    Python installation. This way, the specific environment can have
+                    specific versions of packages that might otherwise conflict with
+                    the other environments. Then, after installing a few Python
+                    packages on the virtual environment, I flashed the Artermis
+                    with the Arduino Bluetooth sketch, causing it to print the board's
+                    MAC address to the Serial Monitor as can be seen below.
+                </p>
+
+                <figure id="figure1">
+                    <img src="/ece4160-website/assets/images/lab2/macaddress.jpg"
+                        alt="MAC Address of my Artemis Nano">
+                </figure>
+
+            <h3>Codebase</h3>
+                <p>
+                    The codebase is separated between Python and Arduino. The
+                    Python code consists of various modules responsible for 
+                    establishing a Bluetooth connection to the Artermis, defining
+                    an enumeration of command types, creating a method to print
+                    outputs in a comprehensible manner (by including timestamp,
+                    color-coding the information, etc.), and assisting with
+                    debugging using log messages. The main file utilizing these
+                    modules is the Jupyter Notebook file <samp>demo.ipynb</samp>.
+                    The notebook incrementally generates a UUID, establishes a
+                    BLE connection, receives data from the Artemis as
+                    programmed initially on the Arduino sketch described below,
+                    sends commands to the Artemis and prints out the response,
+                    and finally disconnects the BLE connection, each step
+                    generating an output that is easily readable by the user
+                    with the ability to only run each section with memory of the
+                    previous sections.
+                </p>
+                <p>
+                    The Arduino code handles the data sent to the Artemis via
+                    Bluetooth from the Jupyter Notebook depending on the type of
+                    command. The command establishes an expected set (or lack) of
+                    arguments which, for example, can be pretty-printed to the
+                    Serial Monitor. Also, some commands are handled by sending
+                    back some specific data such as a timestamp or processor
+                    temperature back to the notebook. Additionally, there are
+                    C++ header files defining helper modules for the Arduino
+                    code such as an enhanced String class with added functionality
+                    on top of a String, and a specifc type of String that is sent
+                    via Bluetooth by the Bluetooth module.
+                </p>
+
+        <h2>Lab Tasks</h2>
+            <h3>Configurations</h3>
+                <p>
+                    After obtaining the MAC address, I updated the appropriate 
+                    value in <samp>connections.yaml</samp>. Then, I generated a
+                    new UUID in the notebook and replaced the value in the
+                    Arduino code as well as in the same yaml file. Finally,
+                    to ensure that the bluetooth connection would be established
+                    on my Windows computer, I changed
+                    <pre>if IS_ATLEAST_MAC_OS_12:</pre>
+                    to
+                    <pre>if True:</pre>
+                    Unfortunately, this did not work, and I ended up using the
+                    former condition in the if statement for a successful
+                    connection.
+                </p>
+
+            <h3>Jupyter Notebook <samp>demo.ipynb</samp></h3>
+                <p>
+                    The next step was to test that the BLE connection worked
+                    by flashing the Arduino sketch to the board and running
+                    the notebook cells that performed the aforementioned set
+                    of incremental steps. As can be seen below, I successfully
+                    established a BLE connection.
+                </p>
+                <figure id="figure2">
+                    <img src="/ece4160-website/assets/images/lab2/connected.jpg"
+                    alt="BLE connected established on Arduino">
+                    <img src="/ece4160-website/assets/images/lab2/BTConnected.jpg"
+                    alt="BLE connected established on Jupyter Notebook">
+                </figure>
+                <p>
+                    Then, I ran the cell sending the "PING" command to the
+                    Artemis and received a "PONG" back. In the next cell, the
+                    notebook sent the "SEND_TWO_INTS" command with "2|-6" as
+                    the arguments. The Arduino code parsed the arguments and
+                    pretty printed them to the Serial Monitor. Both of these can
+                    be seen in the images below.
+                </p>
+                <figure id="figure3">
+                    <img src="/ece4160-website/assets/images/lab2/Ping.jpg"
+                    alt="Jupyter: Ping sent, Pong received">
+                    <img src="/ece4160-website/assets/images/lab2/Pong.jpg"
+                    alt="Arduino: Pong sent and 2|6 received">
+                </figure>
+                <p>
+                    Finally, I ran the disconnect cell and the Bluetooth
+                    connection was terminated.
+                </p>
+                <figure id="figure4">
+                    <img src="/ece4160-website/assets/images/lab2/Disconnected.jpg"
+                    alt="Disconnection from BLE">
+                </figure>
+            
+            <h3>Send Echo</h3>
+                <p>
+                    This task required sending an <samp>ECHO</samp> command with
+                    a String as an argument from the notebook to the Artemis and
+                    receiving back the same string with more characters prepended and
+                    appended to it. On the Python side, I wrote a function that
+                    would send the command with a parameterized value and print
+                    the response:
+                </p>
+                <script src="https://gist.github.com/sg758/584ad8f49e9b359c878e06c3f57a9168.js"></script>
+                <p>
+                    On the Arduino side, I added the following handler code in
+                    the case where the <samp>ECHO</samp> command was received:
+                </p>
+                <script src="https://gist.github.com/sg758/73c8f6b00d9222c18df957a5610425c9.js"></script>
+                <p>
+                    Invoking the function with argument <samp>"Command 1"</samp>
+                    resulted in the following response:
+                </p>
+                <p>
+                    <samp>Artemis Robot Says: "Command 1" :D</samp>
+                </p>
+            
+            <h3>Get Time</h3>
+                <p>
+                    This task required adding a new command type
+                    <samp>GET_TIME_MILLIS</samp>, sending which to the board
+                    would cause it to reply with the current time in milliseconds
+                    formatted as "T:xxxxx" in accordance with the String
+                    characteristic type. On the Python side, I wrote a similar
+                    function that would send the command and print the response:
+                </p>
+                <script src="https://gist.github.com/sg758/dccc6a273e4b8d33575b020294c183bd.js"></script>
+                <p>
+                    On the Arduino side, I added the following handler code in
+                    the case where the <samp>GET_TIME_MILLIS</samp> command was
+                    received:
+                </p>
+                <script src="https://gist.github.com/sg758/10b2838d04a3ed484ea51bc60d550296.js"></script>
+                <p>
+                    Invoking the function resulted in the following response:
+                </p>
+                <p>
+                    <samp>T:424303</samp>
+                </p>
+            
+            <h3>Notification Handler</h3>
+                <p>
+                    This task required setting up a notification handler in Python
+                    to receive any string value. This would essentially serve
+                    as an event listener for the receive string event, and
+                    invoke a callback function. The callback function converted
+                    the bytearray to a string and printed it. The Python code
+                    can be seen below.
+                </p>
+                <script src="https://gist.github.com/sg758/1b4b5d7a4674b063712135b2e9833f03.js"></script>
+                <p>
+                    I invoked the notification handler by sending a
+                    <samp>GET_TIME_MILLIS</samp> command, whose response was
+                    sent to the callback function and printed as a String to the
+                    output:
+                </p>
+                <p>
+                    <samp>T:428983</samp>
+                </p>
+            
+            <h3>Get Temperature</h3>
+                <p>
+                    This task required adding a new command
+                    <samp>GET_TEMP_5s</samp>, whose receipt on the Arduino side
+                    would trigger the handler code to send back an array of
+                    five timestamped processor temperature readings, each taken
+                    every second for 5s upon receipt. The Python code for this
+                    can be seen below.
+                </p>
+                <script src="https://gist.github.com/sg758/9b7b16e628a84b5e61311490886b149f.js"></script>
+                <p>
+                    Evidently, I reused the same callback function to print
+                    the response from the Artemis. On the Arduino code side,
+                    I added the new command type and added handler code as
+                    follows:
+                </p>
+                <script src="https://gist.github.com/sg758/96db9970a31cfea05b563c78416e89d1.js"></script>
+                <p>
+                    As evident from the code, I sent each characteristic string
+                    after one pair of timestamp and temperature reading as so
+                    to prevent going over the maximum character limit. Invoking
+                    the Python function caused the following response to be
+                    printed:
+                </p>
+                <figure id="figure5">
+                    <img src="/ece4160-website/assets/images/lab2/temp5s.jpg"
+                        alt="5 seconds of temperature data">
+                </figure>
+            
+            <h3>Get Temperature Rapid</h3>
+                <p>
+                    Similar to the previous task, this task required adding the
+                    <samp>GET_TEMP_5s_RAPID</samp> command, which would send
+                    back every temperature reading over a 5 second period,
+                    without a 1 second delay as before. The Python code for this
+                    can be seen below.
+                </p>
+                <script src="https://gist.github.com/sg758/31a9e16faf7c8fb419423347486b77fa.js"></script>
+                <p>
+                    The Arduino code to handle this new command type can be seen
+                    below.
+                </p>
+                <script src="https://gist.github.com/sg758/7749a8e40ce9b0c5e36edafd4d4b386b.js"></script>
+                <p>
+                    Again, similar to the previous task, I sent each string
+                    after only one pair of timestamp and temperature reading
+                    to avoid going over the limit. Invoking the function caused
+                    the following abridged output:
+                </p>
+                <figure id="figure6">
+                    <img src="/ece4160-website/assets/images/lab2/tempRapid.jpg"
+                        alt="5 seconds of rapid temperature data">
+                </figure>
+
+            <h3>Limitations</h3>
+                <p>
+                    If the board has 384 kB of RAM, this is equivalent to
+                    3145728 b of memory, which is the exact value that is
+                    displayed on the Arduino IDE output after flashing the board
+                    with any sketch. Hence, assuming that the memory is not
+                    occupied by anything else, exactly that much data can be
+                    stored to send without running out of memory.
+                </p>
+                <p>
+                    5 seconds of 16-bit values taken at 150 Hz would result
+                    in 5 s x (150 times / 1 s) x (16 b) = 12000 b of data.
+                    It would take 3145728 b / (12000 b / 5 s) = 1,310.72 s, or
+                    approximately 21 minutes and 50 seconds to saturate the RAM
+                    with data. Considering the task from above where a pair of
+                    timestamp and temperature values were stored and sent, albeit
+                    immediately, this is two values taken at some sampling
+                    rate for a period of 5 seconds. If they were not sent
+                    immediately after one pair of data, the RAM would saturate
+                    much faster, causing major limitations.
+                </p>
+
+        <footer class="site-footer">
+            <span class="site-footer-owner">
+                This site is maintained by
+                <a href="https://github.com/sg758">Sugam Gautam</a>.
+            </span>
+            <span class="site-footer-credits">
+                Hosted on
+                <a href="https://pages.github.com">GitHub Pages</a>
+                — Adapted from
+                <a href="https://jasonlong.github.io/cayman-theme/">Cayman</a>
+                theme by
+                <a href="https://twitter.com/jasonlong">Jason Long</a>
+                using the
+                <a href="https://draculatheme.com/">Dracula</a>
+                color palette.
+            </span>
+        </footer>
+    </main>
+</body>
+
+</html>
