@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <title>Sugam's ECE 4160 Website | Lab 3</title>
+    <meta name="generator" content="Jekyll v3.9.2"/>
+    <meta property="og:title" content="Sugam Gautam's ECE 4160 Website"/>
+    <meta property="og:locale" content="en_US"/>
+    <link rel="canonical" href="https://sg758.github.io/ece4160-website/"/>
+    <meta property="og:url" content="https://sg758.github.io/ece4160-website/"/>
+    <meta property="og:site_name" content="ece4160-website"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:title" content="Sugam Gautam's ECE 4160 Website"/>
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"WebSite",
+            "headline":"Sugam Gautam's ECE 4160 Website",
+            "name":"ece4160-website",
+            "url":"https://sg758.github.io/ece4160-website/"
+        }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/ece4160-website/assets/css/style.css">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/ece4160-website/assets/images/favicon.png"> -->
+</head>
+
+<body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+        <h1 class="project-name">
+            <a href="/ece4160-website/">ECE 4160 - Fast Robots (SP23)</a>
+        </h1>
+        <h2 class="project-tagline">Sugam Gautam</h2>
+        <a href="https://github.com/sg758/ece4160-website" class="btn" id="view-on-github">View on GitHub</a>
+    </header>
+
+    <main id="content" class="main-content" role="main">
+        <div id="navigation">
+            <a href="/ece4160-website/" class="btn">Home</a>
+            <a href="/ece4160-website/labs/lab1.html" class="btn">Lab 1</a>
+            <a href="/ece4160-website/labs/lab2.html" class="btn">Lab 2</a>
+            <a href="/ece4160-website/labs/lab3.html" class="btn" id="current">Lab 3</a>
+            <!-- <a href="/ece4160-website/labs/lab4.html" class="btn">Lab 4</a> -->
+        </div>
+
+        <h1>Introduction</h1>
+            <p>
+                The purpose of Lab 3 was to equip the Artemis Nano with two Time of Flight (ToF) sensors, which work together to relay distance information to the robot.
+            </p>
+
+        <h1>Prelab</h1>
+            <p>
+                The ToF sensor used in this class is the Sparkfun VL53L1X. According to the datasheet, the default I<sup>2</sup>C address is 0x52. Using both the sensors at the same time would therefore pose an issue, unless if the address is changed programmatically, or if the XSHUT pin on the sensor's PCB is used. The XSHUT pin shuts down the sensor when a digital LOW signal is given to it, and turns it back on with a digital HIGH. I chose to use a combination of both approaches, as I found it to be the most straight forward. I will discuss this in more detail in the
+                <a href="/ece4160-website/labs/lab3.html#lab3i2c">
+                    ToF Sensors in Parallel
+                </a>
+                section below. I connected the sensors to the Qwicc Cable using the wiring diagram below.
+            </p>
+            <figure id="figure1">
+                <img src="/ece4160-website/assets/images/lab3/wiring.jpg"
+                alt="Wiring Diagram of ToF Sensors to Artemis">
+            </figure>
+
+            <p>
+                PLACEMENT OF SENSORS ON ROBOT AND SCENARIOS WHERE YOU WILL MISS OBSTACLES
+            </p>
+
+        <h1>Lab Tasks</h1>
+            <h2>Wiring the ToF Sensor</h2>
+                <p>
+                    The first task was to solder 
+                </p>
+                <figure id="figure2">
+                    <img src="/ece4160-website/assets/images/lab3/"
+                    alt="">
+                </figure>
+
+            <h2>I<sup>2</sup>C Scanning</h2>
+                <p>
+                    The next step was to 
+                </p>
+                <figure id="figure3">
+                    <img src="/ece4160-website/assets/images/lab3/"
+                    alt="">
+                </figure>
+                
+            <h2>Sensor Data</h2>
+                <p>
+                    Then, 
+                </p>
+                <figure id="figure4">
+                    <img src="/ece4160-website/assets/images/lab3/"
+                    alt="">
+                </figure>
+
+                <p>
+                    Finally, 
+                </p>
+                <figure id="figure5">
+                    <img src="/ece4160-website/assets/images/lab3/"
+                    alt="">
+                </figure>
+            
+            <h2 id="lab3i2c">ToF Sensors in Parallel</h2>
+                <p>
+                    This task required 
+                </p>
+                <figure id="figure6">
+                    <img src="/ece4160-website/assets/images/lab3/"
+                    alt="">
+                </figure>
+            
+            <h2>ToF Sensor Speed</h2>
+                <p>
+                    This task 
+                </p>
+                <!-- INSERT CODE SNIPPET HERE -->
+
+        <footer class="site-footer">
+            <span class="site-footer-owner">
+                This site is maintained by
+                <a href="https://github.com/sg758">Sugam Gautam</a>.
+            </span>
+            <span class="site-footer-credits">
+                Hosted on
+                <a href="https://pages.github.com">GitHub Pages</a>
+                — Adapted from
+                <a href="https://jasonlong.github.io/cayman-theme/">Cayman</a>
+                theme by
+                <a href="https://twitter.com/jasonlong">Jason Long</a>
+                using the
+                <a href="https://draculatheme.com/">Dracula</a>
+                color palette.
+            </span>
+        </footer>
+    </main>
+</body>
+
+</html>
