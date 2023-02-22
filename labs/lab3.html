@@ -154,7 +154,7 @@
                 </figure>
 
                 <p>
-                    I took the combination approach of using the shutdown pin and programmatically changing the I2C address. As can be seen in the code snippet below, I first shut down one of the sensors, changed the address of the other to 0x22, and turned the first sensor back on. This way, there needed not be any interruptions in the loop where the distance data was collected, which might have resulted from taking data from one sensor, turning it off, and taking data from the other sensor.
+                    With the help of Joseph Horwitz, I took the combination approach of using the shutdown pin and programmatically changing the I2C address. As can be seen in the code snippet below, I first shut down one of the sensors, changed the address of the other to 0x22, and turned the first sensor back on. This way, there needed not be any interruptions in the loop where the distance data was collected, which might have resulted from taking data from one sensor, turning it off, and taking data from the other sensor.
                 </p>
 
                 <script src="https://gist.github.com/sg758/0aeeb7686e33d3969cbd8cd2619222b2.js"></script>
@@ -163,7 +163,7 @@
                     Using this code, I recorded data from both sensors. At first, there was some difficulting displaying them, but with a new QWIIC breakout board, both sensors relayed their distance information, as can be seen in the Serial Monitor screenshot below.
                 </p>
 
-                <figure id="figure7">
+                <figure id="figure8">
                     <img src="/ece4160-website/assets/images/lab3/bothsensors.png"
                     alt="Serial monitor displaying both sensor data">
                 </figure>
@@ -177,11 +177,11 @@
 
             <h2>Sending ToF Data over Bluetooth</h2>
                 <p>
-                    For the final lab task, I sent some ToF data over Bluetooth. The plot below shows the data received vs. the time.
+                    For the final lab task, I sent distance data from both ToF sensors over Bluetooth. The plot below shows the data received in mm vs. the time in ms.
                 </p>
 
-                <figure id="figure8">
-                    <img src="/ece4160-website/assets/images/lab3/bt.png"
+                <figure id="figure9">
+                    <img src="/ece4160-website/assets/images/lab3/bt.jpg"
                     alt="Bluetooth Data">
                 </figure>
 
