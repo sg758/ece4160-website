@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <title>Sugam's ECE 4160 Website | Lab 4</title>
+    <meta name="generator" content="Jekyll v3.9.2"/>
+    <meta property="og:title" content="Sugam Gautam's ECE 4160 Website"/>
+    <meta property="og:locale" content="en_US"/>
+    <link rel="canonical" href="https://sg758.github.io/ece4160-website/"/>
+    <meta property="og:url" content="https://sg758.github.io/ece4160-website/"/>
+    <meta property="og:site_name" content="ece4160-website"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:title" content="Sugam Gautam's ECE 4160 Website"/>
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"WebSite",
+            "headline":"Sugam Gautam's ECE 4160 Website",
+            "name":"ece4160-website",
+            "url":"https://sg758.github.io/ece4160-website/"
+        }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/ece4160-website/assets/css/style.css">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/ece4160-website/assets/images/favicon.png"> -->
+</head>
+
+<body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+        <h1 class="project-name">
+            <a href="/ece4160-website/">ECE 4160 - Fast Robots (SP23)</a>
+        </h1>
+        <h2 class="project-tagline">Sugam Gautam</h2>
+        <a href="https://github.com/sg758/ece4160-website" class="btn" id="view-on-github">View on GitHub</a>
+    </header>
+
+    <main id="content" class="main-content" role="main">
+        <div id="navigation">
+            <a href="/ece4160-website/" class="btn">Home</a>
+            <a href="/ece4160-website/labs/lab1.html" class="btn">Lab 1</a>
+            <a href="/ece4160-website/labs/lab2.html" class="btn">Lab 2</a>
+            <a href="/ece4160-website/labs/lab3.html" class="btn">Lab 3</a>
+            <a href="/ece4160-website/labs/lab4.html" class="btn" id="current">Lab 4</a>
+        </div>
+
+        <h1>Introduction</h1>
+            <p>
+                The purpose of Lab 4 was to add the Inertial Measurement Unit (IMU) to the
+                Artemis Nano robot system and be able to obtain accelerometer and
+                gyroscope data of the robot, as well as solder a QWIIC cable to a 650mAh
+                battery to allow the Artermis to be powered while on the robot.
+            </p>
+
+        <h1>Lab Tasks</h1>
+            <h2>Setting Up the IMU</h2>
+                <p>
+                    The first task of the lab was to connect the IMU to the Artemis Nano
+                    using the QWIIC cable, and run the
+                    <samp>Example1_Basics.ino</samp>
+                    example code to understand how the values of the sensors change as
+                    the board is rotated around in all axes and accelerated. Figure 1
+                    shows a picture of the connection of the IMU to the Artemis
+                    using the breakout board.
+                </p>
+                <figure id="figure1">
+                    <img src="/ece4160-website/assets/images/lab4/imuToArtemis.jpg"
+                    alt="Connection of IMU to Artemis">
+                </figure>
+
+                <p>
+                    After flashing the example code to the board, the Serial Monitor
+                    produced the following output while keeping the IMU stationary and
+                    on a flat surface:
+                </p>
+                <figure id="figure2">
+                    <img src="/ece4160-website/assets/images/lab4/flat.jpg"
+                    alt="Picture of QWIIC cable soldered to the ToF sensor">
+                </figure>
+                
+                <p>
+                    The example code defines various values including AD0_VAL. For the
+                    SparkFun IMU breakout board, since the ADR jumper is open, the
+                    value is set to 1.
+                </p>
+
+                <p>
+                    After playing around with the IMU a bunch, Figure 3 shows the output
+                    of the example code with +x axis facing down, +y axis facing up, and
+                    finally while waving the board around, respectively.
+                </p>
+                <figure id="figure3">
+                    <img src="/ece4160-website/assets/images/lab4/positiveX_down.png"
+                    alt="Output of example code with +x facing downward">
+                    <img src="/ece4160-website/assets/images/lab4/positiveY_up.png"
+                    alt="Output of example code with +y facing upward">
+                    <img src="/ece4160-website/assets/images/lab4/wavingAround.png"
+                    alt="Output of example code while waving the board around">
+                </figure>
+
+            <h2>Accelerometer</h2>
+                <p>
+                    The accelerometer outputs the acceleration in the x, y, and z
+                    directions. Using these values, the pitch and roll can be calculated
+                    using these equations below:
+                </p>
+                    <p>Pitch = tan<sup>-1</sup>(acc_x, acc_z)</p>
+                    <p>Roll = tan<sup>-1</sup>(acc_y, acc_z)</p>
+                <p>
+                    The images in Figure 4 below show the output of the pitch at -90°, 0°,
+                    and 90°.
+                </p>
+                <figure id="figure4">
+                    <img src="/ece4160-website/assets/images/lab4/neg90pitch.jpg"
+                    alt="Sensor output with actual pitch of -90°">
+                    <img src="/ece4160-website/assets/images/lab4/atrest.jpg"
+                    alt="Sensor output with actual pitch of 0°">
+                    <img src="/ece4160-website/assets/images/lab4/pos90pitch.jpg"
+                    alt="Sensor output with actual pitch of 90°">
+                </figure>
+
+                <p>
+                    Similarly, Figure 5 shows the output of the roll at the same actual
+                    angles.
+                </p>
+                <figure id="figure5">
+                    <img src="/ece4160-website/assets/images/lab4/neg90roll.jpg"
+                    alt="Sensor output with actual roll of -90°">
+                    <img src="/ece4160-website/assets/images/lab4/atrest.jpg"
+                    alt="Sensor output with actual roll of 0°">
+                    <img src="/ece4160-website/assets/images/lab4/pos90roll.jpg"
+                    alt="Sensor output with actual roll of 90°">
+                </figure>
+
+                <p>
+                    Evidently, the values are relatively accurate. At worst, there was a
+                    5% error, which was for the +90° roll.
+                </p>
+
+                <p>
+                    To analyze the noise while obtaining sensor values when it is near an
+                    operating RC car, a Fast Fourier Transform (FFT) was performed. The
+                    FFT takes a time-domain signal, and transforms it into a frequency
+                    domain signal. Figure 6 shows both the time-domain and frequency
+                    domain signal for the pitch while the Artemis and the connected IMU
+                    was placed on top of a powered-on RC car.
+                </p>
+                <figure id="figure6">
+                    <img src="/ece4160-website/assets/images/lab4/timePitch.jpg"
+                    alt="Time-domain signal of pitch">
+                    <img src="/ece4160-website/assets/images/lab4/FFTpitch.jpg"
+                    alt="Freq-domain signal of pitch">
+                </figure>
+                <p>
+                    Evidently, there was a large amplitude for near-0Hz only, and so the
+                    noise should not be a problem.
+                </p>
+                
+            <h2>Gyroscope</h2>
+                <p>
+                    
+                </p>
+                <figure id="figure7">
+                    <!-- <img src="/ece4160-website/assets/images/lab3/Data.png"
+                    alt="Plot of measured distance vs. actual distance of ToF Sensor"> -->
+                </figure>
+
+                <p>
+                    
+                </p>
+                <figure id="figure8">
+                    <!-- <img src="/ece4160-website/assets/images/lab3/rangingtime.png"
+                    alt="Serial Monitor displaying ranging time"> -->
+                </figure>
+            
+            <h2>Sample Data</h2>
+                <p>
+                    To allow for the Artemis to send the IMU data over BLE while it is
+                    strapped to the RC car, the updated Bluetooth code from
+                    <a href="/ece4160-website/labs/lab3.html">Lab 3</a>
+                    was updated again, by adding a way to trasmit the IMU data.
+                    Effectively, the example code, as discussed earlier, was copied over
+                    to the BLE code, adding new case statements and command types for
+                    pitch and roll. These new cases can be seen in the snippets of code
+                    below.
+                </p>
+                
+                <script src="https://gist.github.com/sg758/074deba5735bbba63da69fd57f44fad1.js"></script>
+
+                <script src="https://gist.github.com/sg758/d3a759aff5a55406cef647bca6ffe730.js"></script>
+            
+                <p>
+                    Evidently, the pitch and roll is being stored in arrays of 5 at a
+                    time, and being transmitted over BLE alongside the time stamp for
+                    each. The plot in Figure 9 below demonstrates 5 seconds of the roll
+                    data being sent over BLE, as the board was rotated approximately
+                    between -90° and 90°.
+                </p>
+                <figure id="figure9">
+                    <img src="/ece4160-website/assets/images/lab4/rollOverBLE.jpg"
+                    alt="Roll data vs. time as transmitted over Bluetooth">
+                </figure>
+            
+            <h2>Cut the Cord!</h2>
+                <p>
+                    The next task of the lab was to solder a QWIIC cable to one of the
+                    650mAh batteries. First, I cut off the wire sheathing of the black
+                    and red wires, making sure to cut it one at a time. If I were to have
+                    cut it both at once, a short would have been created with very little
+                    resistance between + and -. Next, I soldered each of the wires to the
+                    two wires of a QWIIC cable, ensuring that the polarity of the plug
+                    matches the polarity of the battery. Finally, I applied heat to fit a
+                    heat shrink over the point of soldering. The image in Figure 10 below
+                    shows the final product.
+                </p>
+                <figure id="figure10">
+                    <img src="/ece4160-website/assets/images/lab4/battery.jpg"
+                    alt="650mAh battery connected to a QWIIC cable by soldering">
+                </figure>
+            
+            <h2>Stunt with RC Car</h2>
+                <p>
+                    The final task of the lab was to record a stunt on the RC car, while
+                    having the Artemis and the connected IMU strapped to the car, so that
+                    it can send the IMU data over BLE to the Jupyter Notebook for
+                    analysis. However, before that, I first played around with the RC car
+                    to discover all of the cool tricks that it can perform. The video in
+                    Figure 11 shows the car going all over the place using the cyclone
+                    mode.
+                </p>
+                <figure id="figure11">
+                    <video width="100%" controls loop>
+                        <source src="/ece4160-website/assets/videos/lab4/cyclone.mp4"
+                        type="video/mp4">
+                    </video>
+                </figure>
+
+                <p>
+                    After strapping the Artemis to the RC Car, Figure 12 shows a video of
+                    the robot being driven by me, as well as a plot of the ToF and IMU
+                    sensor data over time, as was sent over Bluetooth.
+                </p>
+                <figure id="figure12">
+                    <video width="100%" controls loop>
+                        <source src="/ece4160-website/assets/videos/lab4/finalStunt.mp4"
+                        type="video/mp4">
+                    </video>
+                    <img src="/ece4160-website/assets/images/lab4/stunt.jpg"
+                    alt="Plot of ToF and IMU while performing stunt">
+                </figure>
+
+        <footer class="site-footer">
+            <span class="site-footer-owner">
+                This site is maintained by
+                <a href="https://github.com/sg758">Sugam Gautam</a>.
+            </span>
+            <span class="site-footer-credits">
+                Hosted on
+                <a href="https://pages.github.com">GitHub Pages</a>
+                — Adapted from
+                <a href="https://jasonlong.github.io/cayman-theme/">Cayman</a>
+                theme by
+                <a href="https://twitter.com/jasonlong">Jason Long</a>
+                using the
+                <a href="https://draculatheme.com/">Dracula</a>
+                color palette.
+            </span>
+        </footer>
+    </main>
+</body>
+
+</html>
