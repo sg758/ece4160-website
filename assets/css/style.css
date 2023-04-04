@@ -725,6 +725,11 @@ a:hover {
     max-width: 100%
 }
 
+.multiple {
+    display:grid;
+    row-gap: 9px;
+}
+
 .main-content h1,
 .main-content h2,
 .main-content h3,

@@ -101,7 +101,7 @@
                     of the example code with +x axis facing down, +y axis facing up, and
                     finally while waving the board around, respectively.
                 </p>
-                <figure id="figure3">
+                <figure id="figure3" class="multiple">
                     <img src="/ece4160-website/assets/images/lab4/positiveX_down.png"
                     alt="Output of example code with +x facing downward">
                     <img src="/ece4160-website/assets/images/lab4/positiveY_up.png"
@@ -116,13 +116,13 @@
                     directions. Using these values, the pitch and roll can be calculated
                     using these equations below:
                 </p>
-                    <p>Pitch = tan<sup>-1</sup>(acc_x, acc_z)</p>
-                    <p>Roll = tan<sup>-1</sup>(acc_y, acc_z)</p>
+                    <p>Pitch = atan2(acc<sub>x</sub>, acc<sub>z</sub>)</p>
+                    <p>Roll = atan2(acc<sub>y</sub>, acc<sub>z</sub>)</p>
                 <p>
                     The images in Figure 4 below show the output of the pitch at -90°, 0°,
                     and 90°.
                 </p>
-                <figure id="figure4">
+                <figure id="figure4" class="multiple">
                     <img src="/ece4160-website/assets/images/lab4/neg90pitch.jpg"
                     alt="Sensor output with actual pitch of -90°">
                     <img src="/ece4160-website/assets/images/lab4/atrest.jpg"
@@ -135,7 +135,7 @@
                     Similarly, Figure 5 shows the output of the roll at the same actual
                     angles.
                 </p>
-                <figure id="figure5">
+                <figure id="figure5" class="multiple">
                     <img src="/ece4160-website/assets/images/lab4/neg90roll.jpg"
                     alt="Sensor output with actual roll of -90°">
                     <img src="/ece4160-website/assets/images/lab4/atrest.jpg"
@@ -157,7 +157,7 @@
                     domain signal for the pitch while the Artemis and the connected IMU
                     was placed on top of a powered-on RC car.
                 </p>
-                <figure id="figure6">
+                <figure id="figure6" class="multiple">
                     <img src="/ece4160-website/assets/images/lab4/timePitch.jpg"
                     alt="Time-domain signal of pitch">
                     <img src="/ece4160-website/assets/images/lab4/FFTpitch.jpg"
@@ -170,7 +170,16 @@
                 
             <h2>Gyroscope</h2>
                 <p>
-                    
+                    The gyroscope outputs the change in rotational direction along the x,
+                    y, and z axes. Using these values, the pitch, roll, and yaw can be
+                    found using these equations below:
+                </p>
+                    <p>Roll = Roll<sub>old</sub> + gyr<sub>x</sub> * dt</p>
+                    <p>Pitch = Pitch<sub>old</sub> - gyr<sub>y</sub> * dt</p>
+                    <p>Yaw = Yaw<sub>old</sub> - gyr<sub>z</sub> * dt</p>
+                <p>
+                    The images in Figure 4 below show the output of the pitch at -90°, 0°,
+                    and 90°.
                 </p>
                 <figure id="figure7">
                     <!-- <img src="/ece4160-website/assets/images/lab3/Data.png"
