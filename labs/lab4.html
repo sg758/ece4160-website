@@ -182,20 +182,41 @@
                     <p>Pitch = Pitch<sub>old</sub> - gyr<sub>y</sub> * dt</p>
                     <p>Yaw = Yaw<sub>old</sub> - gyr<sub>z</sub> * dt</p>
                 <p>
-                    The images in Figure 4 below show the output of the pitch at -90°, 0°,
+                    The video in Figure 7 below shows the output of the pitch at 0°, -90°,
                     and 90°.
                 </p>
                 <figure id="figure7">
-                    <!-- <img src="/ece4160-website/assets/images/lab3/Data.png"
-                    alt="Plot of measured distance vs. actual distance of ToF Sensor"> -->
+                    <video width="100%" muted controls loop>
+                        <source src="/ece4160-website/assets/videos/lab4/gyroscope.mp4"
+                        type="video/mp4">
+                    </video>
                 </figure>
 
                 <p>
-                    Evidently, the gyroscope by itself is not accurate after __ deg.
+                    Evidently, the gyroscope deviates really quickly from the actual
+                    value of the roll, pitch, and yaw. In the video above, the pitch had
+                    already reached -6° before I picked up the IMU to put it into the -90°
+                    position. The graph below also shows the steady increase in roll and
+                    decrease in pitch, during a period of time when the IMU is held in
+                    place.
                 </p>
                 <figure id="figure8">
-                    <!-- <img src="/ece4160-website/assets/images/lab3/rangingtime.png"
-                    alt="Serial Monitor displaying ranging time"> -->
+                    <img src="/ece4160-website/assets/images/lab4/gyro90pitch.png"
+                    alt="Demo of gyroscope deviation">
+                </figure>
+
+                <p>
+                    Hence, a complementary filter is crucial for accurate data. I designed
+                    the filter below to take 0.9 of the gyroscope output and 0.1 of the
+                    accelerator output and give the roll and pitch as sums of these
+                    calculations. The video below shows the same experiment as above going
+                    from 0° to 90° to -90° using the complementary filter.
+                </p>
+                <figure id="figure9">
+                    <video width="100%" muted controls loop>
+                      <source src="/ece4160-website/assets/videos/lab4/complementary.mp4"
+                      type="video/mp4">
+                    </video>
                 </figure>
             
             <h2>Sample Data</h2>
@@ -221,7 +242,7 @@
                     data being sent over BLE, as the board was rotated approximately
                     between -90° and 90°.
                 </p>
-                <figure id="figure9">
+                <figure id="figure10">
                     <img src="/ece4160-website/assets/images/lab4/rollOverBLE.jpg"
                     alt="Roll data vs. time as transmitted over Bluetooth">
                 </figure>
@@ -263,7 +284,7 @@
                 <p>
                     After strapping the Artemis to the RC Car, Figure 12 shows a video of
                     the robot being driven by me, as well as a plot of the ToF and IMU
-                    sensor data over time, as was sent over Bluetooth.
+                    sensor data over 5 seconds, as was sent over Bluetooth.
                 </p>
                 <figure id="figure12">
                     <video width="100%" controls loop>
