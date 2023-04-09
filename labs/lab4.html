@@ -228,7 +228,7 @@
                     Effectively, the example code, as discussed earlier, was copied over
                     to the BLE code, adding new case statements and command types for
                     pitch and roll. These new cases can be seen in the snippets of code
-                    below.
+                    below. All delays were removed to ensure best execution time.
                 </p>
                 
                 <script src="https://gist.github.com/sg758/074deba5735bbba63da69fd57f44fad1.js"></script>
@@ -244,7 +244,28 @@
                 </p>
                 <figure id="figure10">
                     <img src="/ece4160-website/assets/images/lab4/rollOverBLE.jpg"
-                    alt="Roll data vs. time as transmitted over Bluetooth">
+                    alt="Roll data vs. time as transmitted over bluetooth">
+                </figure>
+
+                <p>
+                    Next, I combined the IMU data with ToF data and sent it over BLE.
+                    To ensure that all data is sent, I reduced the array size to 2, so
+                    that only two values of roll, pitch, and yaw, as well as ToF distances
+                    would be sent at one time. Also, for easier processing on the Python
+                    side, I sent the ToF data separately from the IMU data. The Python
+                    code that processes both of these strings can be seen below.
+                </p>
+
+                <script src="https://gist.github.com/sg758/2b634af0db0b401417595a427e6993f3.js"></script>
+
+                <p>
+                    Figure 11 below demonstrates both data being sent via BLE as plotted
+                    using matplotlib's pyplot.
+                </p>
+
+                <figure id="figure11">
+                    <img src="/ece4160-website/assets/images/lab4/all.jpg"
+                    alt="ToF and IMU data vs. time as transmitted over bluetooth">
                 </figure>
             
             <h2>Cut the Cord!</h2>
@@ -256,10 +277,10 @@
                     resistance between + and -. Next, I soldered each of the wires to the
                     two wires of a QWIIC cable, ensuring that the polarity of the plug
                     matches the polarity of the battery. Finally, I applied heat to fit a
-                    heat shrink over the point of soldering. The image in Figure 10 below
+                    heat shrink over the point of soldering. The image in Figure 12 below
                     shows the final product.
                 </p>
-                <figure id="figure10">
+                <figure id="figure12">
                     <img src="/ece4160-website/assets/images/lab4/battery.jpg"
                     alt="650mAh battery connected to a QWIIC cable by soldering">
                 </figure>
@@ -271,10 +292,10 @@
                     it can send the IMU data over BLE to the Jupyter Notebook for
                     analysis. However, before that, I first played around with the RC car
                     to discover all of the cool tricks that it can perform. The video in
-                    Figure 11 shows the car going all over the place using the cyclone
+                    Figure 13 shows the car going all over the place using the cyclone
                     mode.
                 </p>
-                <figure id="figure11">
+                <figure id="figure13">
                     <video width="100%" controls loop>
                         <source src="/ece4160-website/assets/videos/lab4/cyclone.mp4"
                         type="video/mp4">
@@ -282,11 +303,11 @@
                 </figure>
 
                 <p>
-                    After strapping the Artemis to the RC Car, Figure 12 shows a video of
+                    After strapping the Artemis to the RC Car, Figure 14 shows a video of
                     the robot being driven by me, as well as a plot of the ToF and IMU
                     sensor data over 5 seconds, as was sent over Bluetooth.
                 </p>
-                <figure id="figure12">
+                <figure id="figure14">
                     <video width="100%" controls loop>
                         <source src="/ece4160-website/assets/videos/lab4/finalStunt.mp4"
                         type="video/mp4">
