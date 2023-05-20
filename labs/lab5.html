@@ -69,15 +69,26 @@
             <p>
                 Before coming to the lab, there were a few things to consider. Firstly, I considered
                 the pins that I would use to connect the motor drivers to. Given that they require
-                PWM signals, the pin would have to be analog. Also, considering how they would be
-                oriented to allow for easier connection, I decided to connect the motor drivers
-                as can be seen in the image below, intending to connect the left and right motor
-                drivers on each side of the Artemis board.
+                PWM signals, the pin would have to be labeled with a "~" in the datasheet. Also,
+                taking into consideration how they would be oriented to allow for easier 
+                connections, I decided to connect the motor drivers as can be seen in the image
+                below, where the left and right motor drivers are on either side of the Artemis
+                board.
             </p>
             <figure id="figure1">
                 <img src="/ece4160-website/assets/images/lab5/wiring.jpg"
                 alt="Connection of motor drivers to Artemis">
             </figure>
+            
+            <p>
+                For the left motor, I decided to connect <samp>IN1</samp> and <samp>IN2</samp> to
+                A15 and A16, respectively. For the right motor, I decided to connect them to A1 and
+                A0, respectively. The <samp>OUT1</samp> for both drivers would be connected to the
+                negative of the motor and the <samp>OUT2</samp> to the positive. Finally, all of
+                the grounds would be connected, ensuring common ground among all, and the
+                <samp>VIN</samp> for both drivers would be connected to the motor battery's
+                positive.
+            </p>
 
             <p>
                 Additionally, the Artemis and the motor drivers are to be powered using different
@@ -97,33 +108,74 @@
                 inspiration from
                 <a href="https://anyafp.github.io/ece4960/labs/lab5/#prelab">Anya's report</a>,
                 I decided to twist the wires with each other to cancel out the positive and negative
-                magnetic fields.
+                magnetic fields. Furthermore, given that solid core wires can cause problems when
+                undergoing high accelerations, I decided to use stranded wire for all connections.
             </p>
 
         <h1>Lab Tasks</h1>
             <h2>First Dual Motor Driver</h2>
                 <p>
+                    I started by soldering all of the wires to the motor driver. After soldering,
+                    here is what it looked like.
+                </p>
+                <figure id="figure2">
+                    <img src="/ece4160-website/assets/images/lab5/motordriver1.jpg"
+                    alt="Wires soldered to motor driver">
+                </figure>
 
+                <p>
+                    Unfortunately, due to timing constraints, I was unable to go to the lab to take
+                    oscilloscope measurements for the PWM signals. However, if I were to have had
+                    time, I would have chosen the power supply voltage to be 3.7V, as this is equal
+                    to the voltage output of the motor battery, and current to be 2A, to be well
+                    below the maximum rating.
                 </p>
             
             <h2><samp>analogWrite</samp></h2>
                 <p>
-
+                    As mentioned above, I was unable to go to lab to get the oscilloscope
+                    measurements. However, taking a look at my classmates reports, it seems that
+                    the waveform for a 50% duty cycle signal has the following shape.
                 </p>
+                <figure id="figure3">
+                    <img src="/ece4160-website/assets/images/lab5/PWMsignal.jpg"
+                    alt="Waveform of PWM signal output from Artemis">
+                </figure>
             
             <h2>Taking the Car Apart</h2>
                 <p>
-
+                    The next step was to take apart the RC car and connect one of its motors to the
+                    motor driver. After connecting the motor driver to the motor, the RC car looks
+                    like the following.
                 </p>
+                <figure id="figure4">
+                    <img src="/ece4160-website/assets/images/lab5/apartCar.jpg"
+                    alt="Picture of RC car taken apart with motor connected to motor driver">
+                </figure>
             
             <h2>Free Running the Motors</h2>
                 <p>
-
+                    After connecting the motor drivers and Artemis to the RC car, the video in
+                    <a href="/ece4160-website/assets/images/lab5/lab5.html#figure5">Figure 5</a>
+                    shows how I ran the motor on one side of the car using the following code.
                 </p>
+
+                <script
+                    src="https://gist.github.com/sg758/d5332b5ee4955f7b667a002dcf19e0b2.js">
+                </script>
+                
+                <figure id="figure5">
+                    <video width="100%" controls loop>
+                        <source src="/ece4160-website/assets/videos/lab5/leftMotor.mp4"
+                        type="video/mp4">
+                    </video>
+                </figure>
         
             <h2>Powering Motor Drivers with 850mAh Battery</h2>
                 <p>
-
+                    Since I was unable to go to the lab, I have already been using the 850mAh
+                    battery to power the motor drivers. I made sure to connect the positive and
+                    negative terminals coorectly, and there were no issues so far.
                 </p>
         
             <h2>Second Dual Motor Drivers</h2>
