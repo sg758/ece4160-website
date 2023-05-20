@@ -61,14 +61,43 @@
         <h1>Introduction</h1>
             <p>
                 The purpose of Lab 5 was to control the RC car using the Artemis directly,
-                using the newly added dual motor drivers. The objective of the lab was
-                to program the car to execute a set of pre-programmed moves including
-                turns. Furthermore,
+                using the newly added dual motor drivers. By the end of the lab, the car can
+                execute a set of pre-programmed moves including turns.
             </p>
 
         <h1>Prelab</h1>
             <p>
+                Before coming to the lab, there were a few things to consider. Firstly, I considered
+                the pins that I would use to connect the motor drivers to. Given that they require
+                PWM signals, the pin would have to be analog. Also, considering how they would be
+                oriented to allow for easier connection, I decided to connect the motor drivers
+                as can be seen in the image below, intending to connect the left and right motor
+                drivers on each side of the Artemis board.
+            </p>
+            <figure id="figure1">
+                <img src="/ece4160-website/assets/images/lab5/wiring.jpg"
+                alt="Connection of motor drivers to Artemis">
+            </figure>
 
+            <p>
+                Additionally, the Artemis and the motor drivers are to be powered using different
+                batteries. This is because the motors connected to the motor drivers draw a lot of
+                current, while the Artemis does not. Hence, the 850mAh battery is used for the motor
+                drivers, and the 650mAh battery is used for the Artemis.
+            </p>
+
+            <p>
+                Finally, the last consideration was for routing the variety of wires. As seen in
+                <a href="/ece4160-website/labs/lab5.html#figure1">Figure 1</a>,
+                there are about 13 wires that need to be long enough to reach other components.
+                Given the scope of this lab, I decided that it would be fine to have long wires, as
+                long as they are not unnecessarily long to cause considerable noise, as it would
+                make the connections easier, and there would be no requirement to desolder and
+                resolder the wires in the case of a wire not reaching a component. Also, taking
+                inspiration from
+                <a href="https://anyafp.github.io/ece4960/labs/lab5/#prelab">Anya's report</a>,
+                I decided to twist the wires with each other to cancel out the positive and negative
+                magnetic fields.
             </p>
 
         <h1>Lab Tasks</h1>
