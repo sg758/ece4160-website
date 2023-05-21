@@ -175,33 +175,76 @@
                 <p>
                     Since I was unable to go to the lab, I have already been using the 850mAh
                     battery to power the motor drivers. I made sure to connect the positive and
-                    negative terminals coorectly, and there were no issues so far.
+                    negative terminals correctly, as well as to connect everything to ground and
+                    there were no issues so far.
                 </p>
         
             <h2>Second Dual Motor Drivers</h2>
                 <p>
-
+                    The second dual motor driver is where I ran into an issue. I was soldering
+                    the wires to the motor controller at home, and initially, everything was fine.
+                    However, as I soldered more and more, the soldering iron seemed to perform
+                    more and more worse, until it was very difficult for the solder to attach to
+                    the solder pads on the through-holes. When soldering the wires to the second
+                    motor controller, I could not get the solder to stay and attach the wires
+                    to the controller correctly, no matter how long I heated up the soldering iron
+                    or placed its tip on the soldering pad. Hence, I was unable to get the second
+                    motor driver connected to the RC car and the Artemis. But, given the
+                    <a href="/ece4160-website/assets/images/lab5/lab5.html#figure1">
+                        wiring diagram
+                    </a>,
+                    I would have connected the second motor driver to pins A0 and A1 on the Artemis,
+                    and would have ran the following code for the wheels other side of the car to
+                    rotate back and forth.
                 </p>
+
+                <script
+                    src="https://gist.github.com/sg758/6442b229d2e327331ce669f64864fc22.js">
+                </script>
         
             <h2>Full Installation</h2>
                 <p>
-
+                    After experimenting with one of the motor drivers, I would have placed the motor
+                    drivers on the underside of the motor battery holder, and placed the Artemis and
+                    its battery in the large space in front of the motors. I would have placed the
+                    ToF sensors in the front of the car, each angled a little to the left and right.
+                    Finally, the IMU would be placed on the underside of the battery holder, so that
+                    it stays flat for accurate measurements.
                 </p>
         
             <h2>PWM Discussion</h2>
                 <p>
-
+                    Taking a look at the classmates observations, it seems that the lower limit of
+                    the PWM value in <samp>analogWrite(pin, PWM)</samp> was between 40 and 60. It
+                    makes sense, as the motor driver is very likely keeping a threshold to be
+                    robust against noise that could perhaps cause a 0-signal to appear up to 40, and
+                    be mistaked for moving the motors.
                 </p>
         
             <h2>Calibration</h2>
                 <p>
-
+                    If my robot did not travel in a straight line, I would have experimented with
+                    multiplying one of the sides' PWM value by a factor to make it so that they
+                    both travel at the same rate, and thus keep the robot moving in a straight line.
+                    I would do this using the following code, changing the <samp>factor</samp>
+                    constant to one that works well.
                 </p>
+
+                <script
+                    src="https://gist.github.com/sg758/966c47e438ab1929a9efafde9348af91.js">
+                </script>
 
             <h2>Open Loop Control of Robot</h2>
                 <p>
-
+                    Since I was unable to use the second motor driver, I cannot show a video of the
+                    robot performing the open loop control. However, I would have used the
+                    following code to move the robot forward for 2 seconds, turn right 90 deg, move
+                    forward 2 seconds, turn left 90 deg, and move forward 2 seconds in a loop.
                 </p>
+
+                <script
+                    src="https://gist.github.com/sg758/cb1daa7630ff2edd12d12d890613cdd0.js">
+                </script>
 
         <footer class="site-footer">
             <span class="site-footer-owner">
