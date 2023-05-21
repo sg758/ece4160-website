@@ -70,13 +70,74 @@
         
         <h1>Prelab</h1>
             <p>
-                Debugging is very important in creating a solution. For the robot, I 
+                Debugging is very important in creating a solution. For the robot, to control it
+                over bluetooth, I would have used the running bluetooth code from Lab 4 and added
+                a few functions to store data from the ToF sensor, similar to the code for getting
+                5 seconds worth of ToF data, as can be seen below.
             </p>
+
+            <script
+                src="https://gist.github.com/sg758/fe6bcef7f90e47a5112dfe268914c835.js">
+            </script>
+
+            <p>
+                This data would be taken while the robot is moving forward by the
+                <samp>forward(int seconds)</samp> function from lab 5, and the robot is stopped
+                after the five seconds are up. The ToF data is sent over bluetooth so that when
+                performing the PID control, I would be able to see what the robot is "seeing" and
+                be able to debug any issues.
+            </p>
+
         
         <h1>Position Control</h1>
             <p>
                 This task requires driving the robot as fast as possible toward a wall, and
-                stopping it exactly 1 foot away from the wall using the ToF sensor data.
+                stopping it exactly 1 foot away from the wall using the ToF sensor data. I planned
+                on using a P (proportional) controller for simplicity, whereby the updated speed is
+                equal to error multiplied by the p-coefficient. This way, the robot eventually moves
+                back and forth until the wall is exactly 1 feet in front of it. The following code
+                peforms the P control. In each iteration of <samp>void loop()</samp>, the motor's
+                speed would be updated by <samp>PID_step</samp>, and thereby later in the code the
+                PWM value based on the direction of speed would be updated accordingly.
+            </p>
+
+            <script
+                src="https://gist.github.com/sg758/7f7948820e47e8398c71bb05872ba864.js">
+            </script>
+
+            <p>
+                In the P-control, if error equals 0, then the new speed would be 0, causing the
+                robot to stop, as expected, at one feet from the wall.
+            </p>
+
+            <p>
+                Although I do not have a video, the expected behavior of the robot would be that
+                it would first overshoot a little, going closer than 1 feet to the wall, and then
+                it would go backwards to correct this, and repeat a few times until the error equals
+                0, and it stops as mentioned above. For reference, I found this behavior exhibited
+                in my classmates' experiments, but it makes sense, because the expected behavior of
+                a p-control system depending on the k_p value, is either slow convergence to the 
+                objective, as can be seen in the example below, or converging oscillation until it
+                reaches its objective.
+            </p>
+            <figure id="figure1">
+                <img src="/ece4160-website/assets/images/lab6/pcontrol.jpg"
+                     alt="Reference of k_p example from Lecture 7 notes">
+                <figcaption>Reference of k_p example from Lecture 7 notes</figcaption>
+            </figure>
+            
+            <p>
+                If I were to have been able to do the P-control, I would have experimented with
+                a few values of k_p so that it overshoots by little to no amount, as overshooting by
+                a large amount can cause the robot to collide with the wall, which is not a desired
+                outcome. Based on what my classmate
+                <a href="https://rafcodes.github.io/ECE-4160-website/lab%206.html">
+                    Raphael Fortuna
+                </a>
+                used, a value of k_p = 0.03 caused his robot to overshoot a little and oscillate
+                back and forth until 1 foot away from the wall. Hence, a slightly smaller value
+                than 0.3, even by a change of thousandths as shown in the lab handout with the
+                example PI controller, could cause the robot to gradually slow down to 1 feet.
             </p>
 
         <footer class="site-footer">
